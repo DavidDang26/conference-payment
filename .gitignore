@@ -1,0 +1,11 @@
+# compiled output
+/dist
+/node_modules
+.env
+yarn-error.log
+.serverless/
+.webpack/
+env.yml
+.DS_store
+.eslintcache
+package-lock.json
