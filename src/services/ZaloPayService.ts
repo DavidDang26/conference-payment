@@ -11,7 +11,7 @@ class ZaloPayService {
     CREATE_PAYMENT: "/create"
   };
 
-  private readonly CONFIG = {
+  public CONFIG = {
     appId: process.env.ZALO_PAY_APP_ID,
     key1: process.env.ZALO_PAY_KEY_1,
     key2: process.env.ZALO_PAY_KEY_2
@@ -21,24 +21,22 @@ class ZaloPayService {
     const { appId, key1 } = this.CONFIG;
     const embed_data = {
       preferred_payment_method: ["zalopay_wallet"],
-      redirecturl: "https://github.com/"
+      redirecturl: "http://localhost:4000/conferences"
     };
-    const items = [
-      {
-        paperName: createPaymentRequest.paperName
-      }
-    ];
+    const items = [createPaymentRequest];
     const transID = Math.floor(Math.random() * 1000000);
     const order: any = {
       app_id: appId,
       app_trans_id: `${moment().format("YYMMDD")}_${transID}`, // translation missing: vi.docs.shared.sample_code.comments.app_trans_id
-      app_user: createPaymentRequest.userId,
+      app_user: createPaymentRequest.id,
       app_time: Date.now(), // miliseconds
       item: JSON.stringify(items),
       embed_data: JSON.stringify(embed_data),
-      amount: 50000,
-      description: `Lazada - Payment for the order #${transID}`,
-      bank_code: ""
+      amount: 20000,
+      description: `Conference payment fee #${transID}`,
+      bank_code: "",
+      callback_url:
+        "https://d8df-27-73-107-41.ngrok-free.app/api/payment/callback"
     };
     const data =
       appId +

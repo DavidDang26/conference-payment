@@ -8,6 +8,9 @@ export interface IController {
 }
 
 export interface CreatePaymentRequest {
-  userId: string;
-  paperName: string;
+  title: string;
+  id: string;
+  description: string;
+  paperLink: string;
+  conferenceId: string;
 }
