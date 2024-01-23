@@ -1,9 +1,9 @@
-import express, { NextFunction } from 'express';
-import dotenv from 'dotenv';
+import express, { NextFunction } from "express";
+import dotenv from "dotenv";
 dotenv.config();
-import bodyParser from 'body-parser';
-import cors from 'cors';
-import { IController } from './interfaces';
+import bodyParser from "body-parser";
+import cors from "cors";
+import { IController } from "./interfaces";
 
 class App {
   public app: express.Application;
@@ -21,7 +21,7 @@ class App {
   private initializeCors() {
     this.app.use(
       cors({
-        origin: '*'
+        origin: "*"
       })
     );
   }
@@ -33,7 +33,7 @@ class App {
 
   private initializeControllers(controllers: IController[]) {
     controllers.forEach((controller) => {
-      this.app.use('/', controller.router);
+      this.app.use("/", controller.router);
     });
   }
 
